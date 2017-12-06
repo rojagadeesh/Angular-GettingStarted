@@ -48,6 +48,10 @@ export class ProductListComponent
         console.log('In OnInit');
     }
 
+    onRatingClicked(message:string):void{
+        this.pageTitle = 'Product List :'+message;
+    }
+
     products : IProduct[] = [
         {
             "productId": 1,
