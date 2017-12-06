@@ -14,6 +14,7 @@ export class ProductListComponent
     pageTitle : string = 'Product List';
     imageWidth : number = 50;
     imageMargin : number = 2;
+    errorMessage : string;
 
     showImage : boolean = false;
     toogleImage() : void {
@@ -46,8 +47,14 @@ export class ProductListComponent
 
     ngOnInit() : void{
         //console.log('In OnInit');
-        this.products = this._productService.getProducts();
-        this.filteredProducts = this.products;
+        //this.products = this._productService.getProducts();
+        //this.filteredProducts = this.products;
+        this._productService.getProducts()
+        .subscribe(products => {
+            this.products = products;
+            this.filteredProducts = this.products;
+        },error => this.errorMessage = <any>error)
+        
     }
 
     onRatingClicked(message:string):void{
